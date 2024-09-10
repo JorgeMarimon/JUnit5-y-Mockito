@@ -11,4 +11,8 @@ import java.util.Date;
 @Configuration
 public class AppConfig {
 
+    /*@Bean
+    public Clock clock() {
+        return Clock.systemDefaultZone(); // Puedes cambiar esto para pruebas
+    }*/
 }
