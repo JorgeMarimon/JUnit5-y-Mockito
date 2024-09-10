@@ -16,7 +16,7 @@ public class GreetingServiceImpl implements GreetingService {
     @Autowired
     public GreetingServiceImpl(Date date, DateFormat dateFormat) {
         this.date = date;
-        this.dateFormat = dateFormat;;
+        this.dateFormat = dateFormat;
     }
 
     @Override
