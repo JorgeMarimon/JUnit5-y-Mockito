@@ -4,20 +4,25 @@ import org.learning.demo.services.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.time.Clock;
+import java.time.LocalTime;
 
 @Service
 public class GreetingServiceImpl implements GreetingService {
 
-    private final DateFormat dateFormat;
-    private final Date date;
+    //private final DateFormat dateFormat;
+    //private final Date date;
+    private final Clock clock;
 
-    @Autowired
+    public GreetingServiceImpl(Clock clock) {
+        this.clock = clock;
+    }
+
+    /*@Autowired
     public GreetingServiceImpl(Date date, DateFormat dateFormat) {
         this.date = date;
         this.dateFormat = dateFormat;
-    }
+    }*/
 
     @Override
     public String getGreeting() {
@@ -31,8 +36,9 @@ public class GreetingServiceImpl implements GreetingService {
 
     @Override
     public String getTimeGreeting(String name) {
-        double now = Double.parseDouble(dateFormat.format(date));
-        if (now < 12.00) {
+        LocalTime now = LocalTime.now(clock);
+        //double now = Double.parseDouble(dateFormat.format(date));
+        if (now.isBefore(LocalTime.NOON)) {
             return "Good morning, " + name + "!";
         } else {
             return "Good afternoon, " + name + "!";
